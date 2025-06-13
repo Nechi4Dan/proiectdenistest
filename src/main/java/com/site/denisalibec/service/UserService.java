@@ -46,7 +46,7 @@ public class UserService {
     public void changePassword(ChangePasswordDTO dto) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Utilizatorul nu a fost gasit."));
+                .orElseThrow(() -> new RuntimeException("Parola veche este incorecta. Te rugam sa incerci din nou cu parola corecta sau sa contactezi suportul daca ai uitat parola."));
 
         if (!passwordEncoder.matches(dto.getOldPassword(), user.getPassword())) {
             throw new RuntimeException("Parola veche este incorecta.");

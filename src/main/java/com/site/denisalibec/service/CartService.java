@@ -4,6 +4,7 @@ import com.site.denisalibec.dto.CartCreateUpdateDTO;
 import com.site.denisalibec.dto.CartDTO;
 import com.site.denisalibec.dto.CartItemDTO;
 import com.site.denisalibec.model.Cart;
+import com.site.denisalibec.model.CartItem;
 import com.site.denisalibec.model.User;
 import com.site.denisalibec.repository.CartItemRepository;
 import com.site.denisalibec.repository.CartRepository;
@@ -33,42 +34,31 @@ public class CartService {
 
     // Creeaza un cart nou pentru un user
     public CartDTO save(CartCreateUpdateDTO dto) {
-        Cart cart = fromDTO(dto);
-        return toDTO(cartRepository.save(cart));
+        Cart cart = fromDTO(dto); // mapare din DTO in Cart
+        return toDTO(cartRepository.save(cart)); // salvare si returnare DTO
     }
 
-    // Returneaza toate cart-urile din baza de date
-    public List<CartDTO> findAll() {
-        return cartRepository.findAll().stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
+    // Validare cos gol sau produse invalide
+    public void validateCartBeforeCheckout(Cart cart) {
+        if (cart.getItems() == null || cart.getItems().isEmpty()) {
+            throw new RuntimeException("Cosul de cumparaturi este gol. Te rugam sa adaugi produse in cos.");
+        }
+
+        for (CartItem item : cart.getItems()) {
+            if (item.getQuantity() <= 0) {
+                throw new RuntimeException("Cantitatea produsului " + item.getProduct().getName() + " trebuie sa fie mai mare de 0.");
+            }
+
+            if (item.getQuantity() > item.getProduct().getStock()) {
+                throw new RuntimeException("Cantitatea produsului " + item.getProduct().getName() + " depaseste stocul disponibil.");
+            }
+        }
     }
 
-    // Returneaza un cart dupa ID
-    public Optional<CartDTO> findById(Long id) {
-        return cartRepository.findById(id)
-                .map(this::toDTO);
-    }
-
-    // Actualizeaza un cart existent
-    public Optional<CartDTO> update(Long id, CartCreateUpdateDTO dto) {
-        return cartRepository.findById(id).map(existing -> {
-            User user = userRepository.findById(dto.getUserId())
-                    .orElseThrow(() -> new RuntimeException("Utilizatorul nu a fost gasit cu ID-ul " + dto.getUserId()));
-            existing.setUser(user);
-            return toDTO(cartRepository.save(existing));
-        });
-    }
-
-    // Sterge un cart dupa ID
-    public void delete(Long id) {
-        cartRepository.deleteById(id);
-    }
-
-    // Converteste entitatea Cart in DTO
+    // Returneaza un DTO pentru Cart
     public CartDTO toDTO(Cart cart) {
         List<CartItemDTO> items = cartItemRepository.findByCartId(cart.getId()).stream()
-                .map(CartItemService::toDTO)
+                .map(CartItemService::toDTO) // presupunând că ai un CartItemService care face maparea corectă
                 .collect(Collectors.toList());
 
         return new CartDTO(
@@ -82,7 +72,7 @@ public class CartService {
     public Cart fromDTO(CartCreateUpdateDTO dto) {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new RuntimeException("Utilizatorul nu a fost gasit cu ID-ul " + dto.getUserId()));
-        return new Cart(user);
+        return new Cart(user); // crează un cart nou asociat utilizatorului
     }
 
     // Returneaza cart-ul pentru un username
@@ -93,7 +83,7 @@ public class CartService {
         Cart cart = cartRepository.findByUser(user)
                 .orElseThrow(() -> new RuntimeException("Cosul nu a fost gasit pentru utilizatorul " + username));
 
-        return toDTO(cart);
+        return toDTO(cart); // returnează DTO-ul corespunzător
     }
 
     // Returneaza cart-ul existent sau creeaza unul nou pentru utilizator
@@ -102,8 +92,39 @@ public class CartService {
                 .orElseThrow(() -> new RuntimeException("Utilizatorul nu a fost gasit: " + username));
 
         Cart cart = cartRepository.findByUser(user)
-                .orElseGet(() -> cartRepository.save(new Cart(user)));
+                .orElseGet(() -> cartRepository.save(new Cart(user))); // dacă nu există, creează-l
 
-        return toDTO(cart);
+        return toDTO(cart); // returnează DTO-ul corespunzător
+    }
+
+    // Metoda pentru a găsi toate cart-urile
+    public List<CartDTO> findAll() {
+        return cartRepository.findAll().stream()
+                .map(this::toDTO) // mapare din entitate Cart în DTO
+                .collect(Collectors.toList());
+    }
+
+    // Metoda pentru a găsi un cart după ID
+    public Optional<CartDTO> findById(Long id) {
+        return cartRepository.findById(id)
+                .map(this::toDTO); // mapare din entitate Cart în DTO
+    }
+
+    // Metoda pentru a actualiza un cart
+    public Optional<CartDTO> update(Long id, CartCreateUpdateDTO dto) {
+        Optional<Cart> cartOptional = cartRepository.findById(id);
+        if (cartOptional.isPresent()) {
+            Cart cart = cartOptional.get();
+            // Logica de actualizare a câmpurilor
+            cart.setUser(userRepository.findById(dto.getUserId())
+                    .orElseThrow(() -> new RuntimeException("Utilizatorul nu a fost gasit cu ID-ul " + dto.getUserId())));
+            return Optional.of(toDTO(cartRepository.save(cart))); // returnează cart-ul actualizat
+        }
+        return Optional.empty(); // în caz de cart inexistent
+    }
+
+    // Metoda pentru a șterge un cart
+    public void delete(Long id) {
+        cartRepository.deleteById(id); // șterge cart-ul după ID
     }
 }

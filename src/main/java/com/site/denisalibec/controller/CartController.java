@@ -9,80 +9,65 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/carts")
 @CrossOrigin
 public class CartController {
 
-    // ----------- Variabile ------------------
     private final CartService cartService;
 
-    // ----------- Constructor ------------------
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
 
-    // ----------- Metode ------------------
-
-    // ------- GET: toate cosurile (doar ADMIN) -------
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<CartDTO>> getAll() {
-        return ResponseEntity.ok(cartService.findAll());
-    }
-
-    // ------- GET: cos dupa ID (doar ADMIN) -------
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> getById(@PathVariable Long id) {
+    public ResponseEntity<CartDTO> getById(@PathVariable Long id) {
         return cartService.findById(id)
-                .<ResponseEntity<?>>map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.badRequest().body("Cosul nu a fost gasit."));
+                .map(ResponseEntity::ok)  // Returnează DTO-ul pentru succes
+                .orElseGet(() -> ResponseEntity.status(404).body(null)); // Returnează 404 în caz de eroare
     }
 
-    // ------- POST: creare cos -------
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody CartCreateUpdateDTO dto) {
+    public ResponseEntity<CartDTO> create(@Valid @RequestBody CartCreateUpdateDTO dto) {
         try {
             CartDTO savedCart = cartService.save(dto);
-            return ResponseEntity.ok(savedCart);
+            return ResponseEntity.ok(savedCart);  // Returnează DTO-ul creat
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Eroare la creare cos: " + e.getMessage());
+            return ResponseEntity.badRequest().build(); // Poți să gestionezi eroarea mai specific
         }
     }
 
-    // ------- PUT: actualizare cos -------
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id,
-                                    @Valid @RequestBody CartCreateUpdateDTO dto) {
+    public ResponseEntity<CartDTO> update(@PathVariable Long id, @Valid @RequestBody CartCreateUpdateDTO dto) {
         return cartService.update(id, dto)
-                .<ResponseEntity<?>>map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.badRequest().body("Cosul nu a putut fi actualizat."));
+                .map(ResponseEntity::ok)  // Returnează DTO-ul pentru succes
+                .orElseGet(() -> ResponseEntity.status(404).body(null)); // Returnează 404 în caz de eroare
     }
 
-    // ------- DELETE: stergere cos -------
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
             cartService.delete(id);
-            return ResponseEntity.ok("Cosul a fost sters cu succes.");
+            return ResponseEntity.ok().build(); // Returnează un răspuns de succes fără corp
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Eroare la stergere: " + e.getMessage());
+            return ResponseEntity.status(500).build(); // Poți să gestionezi eroarea mai specific
         }
     }
 
-    // ------- GET: cosul utilizatorului logat -------
     @GetMapping("/my")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> getMyCart(Principal principal) {
+    public ResponseEntity<CartDTO> getMyCart(Principal principal) {
         try {
             String username = principal.getName();
             CartDTO myCart = cartService.getCartForUser(username);
-            return ResponseEntity.ok(myCart);
+            return ResponseEntity.ok(myCart);  // Returnează DTO-ul cosului utilizatorului
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Eroare la preluarea cosului: " + e.getMessage());
+            return ResponseEntity.status(404).body(null); // Returnează 404 în caz de eroare
         }
     }
 }
+
+

@@ -55,9 +55,17 @@ public class CartItemController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id,
                                     @Valid @RequestBody CartItemCreateUpdateDTO dto) {
-        return cartItemService.update(id, dto)
-                .<ResponseEntity<?>>map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.badRequest().body("Itemul nu a putut fi actualizat."));
+        CartItemDTO existingItem = cartItemService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Itemul nu a fost gasit."));
+
+        // Actualizează cantitatea dacă produsul există deja în coș
+        if (existingItem != null) {
+            existingItem.setQuantity(existingItem.getQuantity() + dto.getQuantity());
+            cartItemService.update(id, dto);
+            return ResponseEntity.ok(existingItem);
+        }
+
+        return ResponseEntity.badRequest().body("Itemul nu a putut fi actualizat.");
     }
 
     // ------- DELETE: stergere item -------

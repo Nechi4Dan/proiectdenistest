@@ -14,6 +14,9 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
     // ----------- Metode ------------------
 
-    // Găsește coșul asociat unui utilizator
+    // Gaseste cosul asociat unui utilizator
     Optional<Cart> findByUser(User user);
+
+    // Gaseste cosul asociat unui utilizator pe baza ID-ului utilizatorului
+    Optional<Cart> findByUserId(Long userId);
 }

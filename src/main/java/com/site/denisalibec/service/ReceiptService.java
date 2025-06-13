@@ -1,17 +1,14 @@
 package com.site.denisalibec.service;
 
 import com.site.denisalibec.dto.ReceiptDTO;
+import com.site.denisalibec.enums.PaymentStatus;
 import com.site.denisalibec.model.Payment;
 import com.site.denisalibec.model.Receipt;
-import com.site.denisalibec.model.User;
 import com.site.denisalibec.repository.PaymentRepository;
 import com.site.denisalibec.repository.ReceiptRepository;
-import com.site.denisalibec.security.CustomUserDetails;
 import org.apache.pdfbox.pdmodel.*;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -37,12 +34,12 @@ public class ReceiptService {
         Payment payment = paymentRepository.findById(paymentId)
                 .orElseThrow(() -> new RuntimeException("Plata nu a fost gasita"));
 
-        // Verifica daca utilizatorul autentificat este proprietarul platii
-        User currentUser = getCurrentUser();
-        if (!payment.getUser().getId().equals(currentUser.getId())) {
-            throw new RuntimeException("Nu aveti permisiunea de a genera factura pentru aceasta plata");
+        // Verifica daca plata este finalizata (Paid)
+        if (payment.getStatus() != PaymentStatus.PAID) {
+            throw new RuntimeException("Plata nu este finalizata, nu se poate emite factura.");
         }
 
+        // Creare PDF (factura)
         try (PDDocument document = new PDDocument();
              ByteArrayOutputStream out = new ByteArrayOutputStream()) {
 
@@ -71,6 +68,7 @@ public class ReceiptService {
 
             document.save(out);
 
+            // Salveaza chitanta in baza de date
             Receipt receipt = new Receipt();
             receipt.setGeneratedAt(LocalDateTime.now());
             receipt.setFilename("receipt_" + paymentId + ".pdf");
@@ -78,33 +76,19 @@ public class ReceiptService {
             receipt.setPayment(payment);
 
             Receipt saved = receiptRepository.save(receipt);
-            return toDTO(saved);
+            return toDTO(saved);  // Returnează un DTO cu informațiile chitantei
         } catch (Exception e) {
             throw new RuntimeException("Eroare la generarea facturii PDF: " + e.getMessage());
         }
     }
 
-    // Returneaza o factura existenta doar daca apartine utilizatorului logat
+    // Metoda care returnează chitanta din baza de date pe baza unui ID
     public Receipt getReceipt(Long id) {
-        Receipt receipt = receiptRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura nu a fost gasita"));
-
-        User currentUser = getCurrentUser();
-        if (!receipt.getPayment().getUser().getId().equals(currentUser.getId())) {
-            throw new RuntimeException("Nu aveti acces la aceasta factura");
-        }
-
-        return receipt;
+        return receiptRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Chitanta nu a fost gasita!"));
     }
 
-    // Returneaza utilizatorul autentificat din contextul de securitate
-    private User getCurrentUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserDetails details = (CustomUserDetails) auth.getPrincipal();
-        return details.user();
-    }
-
-    // Converteste entitatea Receipt in DTO
+    // Returneaza un DTO pentru Receipt
     private ReceiptDTO toDTO(Receipt receipt) {
         ReceiptDTO dto = new ReceiptDTO();
         dto.setId(receipt.getId());
@@ -114,3 +98,4 @@ public class ReceiptService {
         return dto;
     }
 }
+

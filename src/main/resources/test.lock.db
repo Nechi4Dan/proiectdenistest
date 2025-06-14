@@ -1,6 +1,6 @@
 #FileLock
-#Fri Jun 13 18:57:33 EEST 2025
-server=192.168.100.16\:56516
-hostName=Nechi4
+#Sat Jun 14 13:17:34 EEST 2025
+server=192.168.0.38\:53380
+hostName=192.168.0.38
 method=file
-id=1976a02bb37e2875a014630014cffc8db42a12d4c77
+id=1976df1d3daa22f12ef6f753f5044a6e672abf1cb03

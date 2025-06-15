@@ -35,6 +35,8 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductStock> stockVariants = new ArrayList<>();
 
+    private String image;
+
     // ----------- Constructori ------------------
     public Product() {}
 
@@ -54,6 +56,7 @@ public class Product {
         this.stock = stock;
         this.category = category;
         this.stockVariants = stockVariants;
+        this.image = image;
     }
 
     // ----------- Getteri si Setteri ------------------
@@ -77,4 +80,7 @@ public class Product {
 
     public List<ProductStock> getStockVariants() { return stockVariants; }
     public void setStockVariants(List<ProductStock> stockVariants) { this.stockVariants = stockVariants; }
+
+    public String getImage() { return image; }
+    public void setImage(String image){ this.image = image; }
 }

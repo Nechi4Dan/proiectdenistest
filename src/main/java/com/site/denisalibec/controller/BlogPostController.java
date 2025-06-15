@@ -27,4 +27,3 @@ public class BlogPostController {
         return blogPostRepository.findById(id).orElse(null);
     }
 }
-

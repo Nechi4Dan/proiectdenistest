@@ -34,5 +34,5 @@ public class ProductController {
     // - @PostMapping pentru a adauga produse noi
     // - @PutMapping pentru a edita produse existente
     // - DeleteMapping pentru a sterge produse
-
+    // !!! aceste lucruri doar contul de admin va putea face
 }

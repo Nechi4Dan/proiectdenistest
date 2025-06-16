@@ -1,5 +1,6 @@
 package com.site.denisalibec.enums;
 
+//TODO: pentru viitor cand aplicam statusul tranzactiilor
 /**
  * Enum care defineste statusul platii in cadrul unei comenzi.
  * Este folosit in entitatea Payment pentru a urmari progresul unei plati.

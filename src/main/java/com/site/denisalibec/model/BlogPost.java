@@ -26,6 +26,7 @@ public class BlogPost {
     // ----------- Constructori ------------------
     public BlogPost() {}
 
+    //TODO: constructor folosit in viitor pt crearea postare blog (ex din form)
     public BlogPost(String title, String summary, String text, String image) {
         this.title = title;
         this.summary = summary;
@@ -33,6 +34,7 @@ public class BlogPost {
         this.image = image;
     }
 
+    //TODO: Construcotr complet, folosit la update/transfer obiecte DTO ->entity
     public BlogPost(Long id, String title, String summary, String text, String image) {
         this.id = id;
         this.title = title;
@@ -45,15 +47,19 @@ public class BlogPost {
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
 
+    // TODO: cand adaugam optiunea de CRUD pt blog
     public String getTitle() {return title;}
     public void setTitle(String title) {this.title = title;}
 
+    // TODO: cand adaugam optiunea de CRUD pt blog
     public String getSummary() {return summary;}
     public void setSummary(String summary) {this.summary = summary;}
 
+    // TODO: cand adaugam optiunea de CRUD pt blog
     public String getText() {return text;}
     public void setText(String text) {this.text = text;}
 
+    // TODO: cand adaugam optiunea de CRUD pt blog
     public String getImage() {return image;}
     public void setImage(String image) {this.image = image;}
 }

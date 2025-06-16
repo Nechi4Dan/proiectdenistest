@@ -47,6 +47,7 @@ public class User {
     // ----------- Constructori ------------------
     public User() {}
 
+    // TODO: Constructor folosit cand convertim din UserDTO in User (ex: creare user)
     public User(String username, String email, String password,
                 String firstName, String lastName, String phone, Role role) {
         this.username = username;

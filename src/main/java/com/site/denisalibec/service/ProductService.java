@@ -19,6 +19,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    // TODO: Momentan doar GET. Se va extinde cu POST/PUT/DELETE (admin)
+
     // Obține toate produsele ca DTO
     public List<ProductDTO> getAllProducts() {
         return productRepository.findAll().stream()

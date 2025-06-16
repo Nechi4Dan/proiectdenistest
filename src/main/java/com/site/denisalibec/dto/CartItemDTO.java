@@ -7,14 +7,16 @@ public class CartItemDTO {
     private String size;
     private int quantity;
     private double price;
+    private String image; // ADAUGAT pentru imaginea produsului
 
-    public CartItemDTO(Long id, Long productId, String productName, String size, int quantity, double price) {
+    public CartItemDTO(Long id, Long productId, String productName, String size, int quantity, double price, String image) {
         this.id = id;
         this.productId = productId;
         this.productName = productName;
         this.size = size;
         this.quantity = quantity;
         this.price = price;
+        this.image = image;
     }
 
     // Getteri si setteri
@@ -35,4 +37,7 @@ public class CartItemDTO {
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+
+    public String getImage() { return image; }
+    public void setImage(String image) { this.image = image; }
 }

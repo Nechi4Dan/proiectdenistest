@@ -92,7 +92,7 @@ public class CartService {
                 .orElse(List.of());
     }
 
-    // 7. Conversie CartItem -> DTO
+    // 7. Conversie CartItem -> DTO (UPDATED cu imaginea)
     private CartItemDTO convertToDTO(CartItem item) {
         return new CartItemDTO(
                 item.getId(),
@@ -100,8 +100,8 @@ public class CartService {
                 item.getProduct().getName(),
                 item.getSize(),
                 item.getQuantity(),
-                item.getProduct().getPrice()
+                item.getProduct().getPrice(),
+                item.getProduct().getImage() // ADAUGAT imaginea produsului
         );
     }
 }
-

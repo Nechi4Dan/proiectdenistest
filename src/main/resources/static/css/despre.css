@@ -1,0 +1,76 @@
+/* === PAGINA DESPRE === */
+.despre-container {
+  padding: 60px 20px 100px;
+  background: #f7f7f7;
+}
+
+.rand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+  gap: 40px;
+}
+
+.rand.invers {
+  flex-direction: row-reverse;
+}
+
+.coloana {
+  flex: 1 1 45%;
+  max-width: 500px;
+}
+
+.coloana img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+.coloana.text h2,
+.coloana.text h3 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.coloana.text p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rand,
+  .rand.invers {
+    flex-direction: column !important;
+  }
+
+  .coloana {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .coloana.text p {
+    text-align: left;
+  }
+}
+
+.final-centru {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.final-centru ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.final-centru li {
+  margin-bottom: 8px;
+}

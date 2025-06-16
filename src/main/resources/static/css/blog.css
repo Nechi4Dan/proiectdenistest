@@ -1,0 +1,77 @@
+/* ============================== */
+/* CSS specific pentru pagina BLOG (blog.html) */
+/* ============================== */
+
+/* Reduce spatiul de sus DOAR pe pagina blog.html */
+body.blog-page .blog {
+  padding-top: 30px;
+}
+
+/* Titlu sectiune blog */
+.blog h2 {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Grid blog - afisare toate postarile */
+.grid-blog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 30px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card postare */
+.postare {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postare:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transform: scale(1.02);
+}
+
+.postare img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.postare h3 {
+  font-size: 20px;
+  margin: 10px 0 8px;
+  color: #111;
+}
+
+.postare p {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.postare a {
+  display: inline-block;
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.postare a:hover {
+  text-decoration: underline;
+}

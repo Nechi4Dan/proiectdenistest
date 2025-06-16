@@ -1,0 +1,46 @@
+/* Stiluri popup login/register */
+#login-popup,
+#register-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 300px;
+}
+
+#login-popup h2,
+#register-popup h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#login-popup input,
+#register-popup input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#login-popup button,
+#register-popup button {
+  width: 100%;
+  padding: 10px;
+  background-color: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#login-popup button:hover,
+#register-popup button:hover {
+  background-color: #444;
+}

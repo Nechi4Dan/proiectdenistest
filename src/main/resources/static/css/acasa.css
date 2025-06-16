@@ -1,0 +1,100 @@
+/* ============================== */
+/* CSS specific pentru pagina ACASA (index.html) */
+/* ============================== */
+
+/* Sectiune produse si blog */
+.produse, .blog {
+  padding: 40px 20px 80px;
+  background-color: transparent;
+}
+
+.produse h2,
+.blog h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Grid produse */
+.grid-produse {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.grid-produse .produs {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.grid-produse .produs:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  border-color: #999;
+}
+
+/* Grid blog */
+.grid-blog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.grid-blog .postare {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.grid-blog .postare:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transform: scale(1.02);
+}
+
+/* Stil buton „Citește mai mult” din postare blog */
+.grid-blog .postare a {
+  display: inline-block;
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.grid-blog .postare a:hover {
+  text-decoration: underline;
+}
+
+/* Buton „Vezi toate” */
+.vezi-toate-wrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.vezi-toate {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.vezi-toate:hover {
+  background-color: #555;
+}
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articol Blog</title>
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- CSS specific pentru articol individual -->
+  <link rel="stylesheet" href="css/articol.css" />
+
+  <!-- CSS specific pentru login/inregistrare -->
+  <link rel="stylesheet" href="css/auth.css" />
+
+</head>
+<body class="articol-page">
+
+  <!-- ========== NAVBAR SUS ========== -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Acasa</a>
+        <a href="despre.html">Despre</a>
+        <a href="magazin.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <!-- Butoane autentificare - apel din main.js -->
+        <button onclick="showForm('login')">Login</button>
+        <button onclick="showForm('register')">Inregistrare</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== CONTINUT ARTICOL BLOG ========== -->
+  <main>
+    <section class="blog">
+      <!-- Articolul incarcat din JavaScript -->
+      <div id="detalii-blog" class="continut-blog">
+        <!-- Titlu + imagine + text din articol.js -->
+      </div>
+
+      <!-- Navigare spre articole anterioare sau urmatoare -->
+      <div class="navigare-blog"></div>
+    </section>
+
+    <!-- FORMULAR LOGIN -->
+<div id="login-popup" style="display: none;">
+  <form id="login-form">
+    <span class="close-btn" onclick="closeForms()">×</span>
+    <h2>Autentificare</h2>
+    <input type="text" id="login-username" placeholder="Username" required />
+    <input type="password" id="login-password" placeholder="Parola" required />
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<!-- FORMULAR REGISTER -->
+<div id="register-popup" style="display: none;">
+  <form id="register-form">
+    <span class="close-btn" onclick="closeForms()">×</span>
+    <h2>Inregistrare</h2>
+    <input type="text" id="register-username" placeholder="Username" required />
+    <input type="email" id="register-email" placeholder="Email" required />
+    <input type="password" id="register-password" placeholder="Parola" required />
+    <input type="text" id="register-firstname" placeholder="Prenume" required />
+    <input type="text" id="register-lastname" placeholder="Nume" required />
+    <input type="text" id="register-phone" placeholder="Telefon" required />
+    <button type="submit">Inregistreaza-te</button>
+  </form>
+</div>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>&copy; 2025 <a href="#">alibecdenis7.com</a>. Toate drepturile rezervate.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/alibecdenis/"><img src="images/social-media/Instagram.png" alt="Instagram" /></a>
+      <a href="#"><img src="images/social-media/tiktok.png" alt="TikTok" /></a>
+      <a href="https://www.facebook.com/denis.alibec.1"><img src="images/social-media/facebook.png" alt="Facebook" /></a>
+      <a href="#"><img src="images/social-media/youtube.png" alt="YouTube" /></a>
+      <a href="https://x.com/AlibecDenis"><img src="images/social-media/twitter1.png" alt="Twitter" /></a>
+    </div>
+  </footer>
+
+  <!-- Script global pentru functionalitati generale -->
+  <script src="js/main.js"></script>
+
+  <!-- Script specific pentru aceasta pagina -->
+  <script src="js/articol.js"></script>
+</body>
+</html>

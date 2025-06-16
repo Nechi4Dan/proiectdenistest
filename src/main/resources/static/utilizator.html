@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Utilizator</title>
+
+  <!-- CSS global + stiluri pagina utilizator -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/utilizator.css" />
+</head>
+<body class="utilizator-page">
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Acasa</a>
+        <a href="despre.html">Despre</a>
+        <a href="magazin.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="utilizator.html">Profil</a>
+        <a href="index.html" onclick="logout()">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTINUT PROFIL UTILIZATOR -->
+<main>
+  <div class="utilizator-container">
+    <h2>Profil utilizator</h2>
+    <div class="user-info">
+      <p><strong>Username:</strong> <span id="username"></span></p>
+      <p><strong>Nume complet:</strong> <span id="fullname"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>Telefon:</strong> <span id="phone"></span></p>
+      <p><strong>Rol:</strong> <span id="role"></span></p>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+</main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 <a href="#">alibecdenis7.com</a>. Toate drepturile rezervate.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/alibecdenis/"><img src="images/social-media/Instagram.png" alt="Instagram" title="Instagram"/></a>
+      <a href="#"><img src="images/social-media/tiktok.png" alt="TikTok" title="TikTok"/></a>
+      <a href="https://www.facebook.com/denis.alibec.1"><img src="images/social-media/facebook.png" alt="Facebook" title="Facebook"/></a>
+      <a href="#"><img src="images/social-media/youtube.png" alt="YouTube" title="YouTube"/></a>
+      <a href="https://x.com/AlibecDenis"><img src="images/social-media/twitter1.png" alt="Twitter" title="Twitter"/></a>
+    </div>
+  </footer>
+
+  <!-- Scripturi -->
+  <script src="js/main.js"></script>
+  <script src="js/utilizator.js"></script>
+</body>
+</html>

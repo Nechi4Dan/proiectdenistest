@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alibec Denis</title>
+
+  <!-- CSS global: stiluri comune intregului site -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- CSS specific pentru pagina ACASA -->
+  <link rel="stylesheet" href="css/acasa.css" />
+
+    <!-- CSS specific pentru login/inregistrare -->
+  <link rel="stylesheet" href="css/auth.css" />
+
+</head>
+<body class="acasa-page">
+
+  <!-- ====================== -->
+  <!-- NAVBAR / MENIU PRINCIPAL -->
+  <!-- ====================== -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Acasa</a>
+        <a href="despre.html">Despre</a>
+        <a href="magazin.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <button onclick="showForm('login')">Login</button>
+        <button onclick="showForm('register')">Inregistrare</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ====================== -->
+  <!-- CONTINUT PRINCIPAL -->
+  <!-- ====================== -->
+  <main>
+
+    <!-- Sectiune autentificare -->
+    <section id="auth-section">
+      <div id="login-form" style="display: none;">
+        <h3>Login</h3>
+        <input type="text" placeholder="Username" />
+        <input type="password" placeholder="Parola" />
+        <button>Login</button>
+      </div>
+
+      <div id="register-form" style="display: none;">
+        <h3>Inregistrare</h3>
+        <input type="text" placeholder="Username" />
+        <input type="password" placeholder="Parola" />
+        <input type="text" placeholder="Prenume" />
+        <input type="text" placeholder="Nume" />
+        <input type="text" placeholder="Telefon" />
+        <input type="email" placeholder="Email" />
+        <input type="text" placeholder="Adresa (optional)" />
+        <button>Inregistrare</button>
+      </div>
+    </section>
+
+    <!-- Previziune produse -->
+    <section class="produse">
+      <h2>Produse disponibile</h2>
+      <div class="grid-produse" id="lista-produse">
+        <!-- Se incarca din js/acasa.js -->
+      </div>
+      <div class="vezi-toate-wrapper">
+        <a href="magazin.html" class="vezi-toate">Vezi tot magazinul</a>
+      </div>
+    </section>
+
+    <!-- Previziune blog -->
+    <section class="blog">
+      <h2>Ultimele postari pe blog</h2>
+      <div class="grid-blog" id="lista-blog">
+        <!-- Se incarca din js/acasa.js -->
+      </div>
+      <div class="vezi-toate-wrapper">
+        <a href="blog.html" class="vezi-toate">Vezi toate articolele</a>
+      </div>
+    </section>
+
+    <!-- FORMULAR LOGIN -->
+<div id="login-popup" style="display: none;">
+  <form id="login-form">
+    <span class="close-btn" onclick="closeForms()">×</span>
+    <h2>Autentificare</h2>
+    <input type="text" id="login-username" placeholder="Username" required />
+    <input type="password" id="login-password" placeholder="Parola" required />
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<!-- FORMULAR REGISTER -->
+<div id="register-popup" style="display: none;">
+  <form id="register-form">
+    <span class="close-btn" onclick="closeForms()">×</span>
+    <h2>Inregistrare</h2>
+    <input type="text" id="register-username" placeholder="Username" required />
+    <input type="email" id="register-email" placeholder="Email" required />
+    <input type="password" id="register-password" placeholder="Parola" required />
+    <input type="text" id="register-firstname" placeholder="Prenume" required />
+    <input type="text" id="register-lastname" placeholder="Nume" required />
+    <input type="text" id="register-phone" placeholder="Telefon" required />
+    <button type="submit">Inregistreaza-te</button>
+  </form>
+</div>
+
+
+  </main>
+
+  <!-- ====================== -->
+  <!-- FOOTER SOCIAL MEDIA -->
+  <!-- ====================== -->
+  <footer>
+    <p>&copy; 2025 <a href="#">alibecdenis7.com</a>. Toate drepturile rezervate.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/alibecdenis/"><img src="images/social-media/Instagram.png" alt="Instagram" title="Instagram" /></a>
+      <a href="#"><img src="images/social-media/tiktok.png" alt="TikTok" title="TikTok" /></a>
+      <a href="https://www.facebook.com/denis.alibec.1"><img src="images/social-media/facebook.png" alt="Facebook" title="Facebook" /></a>
+      <a href="#"><img src="images/social-media/youtube.png" alt="YouTube" title="YouTube" /></a>
+      <a href="https://x.com/AlibecDenis"><img src="images/social-media/twitter1.png" alt="Twitter" title="Twitter" /></a>
+    </div>
+  </footer>
+
+  <!-- ====================== -->
+  <!-- JS global + acasa -->
+  <!-- ====================== -->
+  <script src="js/main.js"></script>
+  <script src="js/acasa.js"></script>
+</body>
+</html>

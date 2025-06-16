@@ -1,0 +1,60 @@
+/* ==========================================
+   articol.css
+   Stiluri specifice pentru pagina articol.html
+
+   In prezent nu sunt necesare stiluri suplimentare,
+   deoarece aceasta pagina foloseste layout-ul si 
+   clasele definite in style.css si blog.css.
+
+   Acest fisier este pregatit pentru viitoare personalizari.
+========================================== */
+/* ============================== */
+/* CSS specific pentru pagina ARTICOL (articol.html) */
+/* ============================== */
+
+/* Continut articol individual */
+.continut-blog {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.continut-blog h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.continut-blog img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto;
+  border-radius: 8px;
+}
+
+/* Navigare intre articole */
+.navigare-blog {
+  max-width: 900px;
+  margin: 40px auto 100px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.navigare-blog a {
+  padding: 10px 16px;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.navigare-blog a:hover {
+  background: #555;
+}

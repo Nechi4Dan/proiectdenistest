@@ -1,0 +1,58 @@
+/* === DETALII PRODUS === */
+.container-detalii {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 50px 80px;
+  background-color: #fff;
+  gap: 40px;
+}
+
+.container-detalii .stanga {
+  flex: 1 1 45%;
+  text-align: center;
+}
+
+.container-detalii .stanga h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.container-detalii .stanga img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  margin-bottom: 25px;
+}
+
+.container-detalii .dreapta {
+  flex: 1 1 45%;
+  text-align: left;
+}
+
+.container-detalii .dreapta p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* === BUTON INAPOI === */
+.btn-inapoi {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  width: fit-content;
+}
+
+.btn-inapoi:hover {
+  background-color: #555;
+}

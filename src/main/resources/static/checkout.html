@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Finalizare Comanda</title>
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- CSS pentru checkout -->
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body class="checkout-page">
+
+  <!-- ========== NAVBAR ========== -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Acasa</a>
+        <a href="despre.html">Despre</a>
+        <a href="magazin.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="cos.html">Inapoi la cos</a>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== CONTINUT CHECKOUT ========== -->
+  <main>
+    <section class="checkout-container">
+      <h2>Finalizare Comanda</h2>
+      
+      <!-- Sumar cos -->
+      <div class="order-summary">
+        <h3>Sumarul comenzii</h3>
+        <div id="cart-summary"></div>
+        <div class="total-section">
+          <h4>Total: <span id="total-amount">0 RON</span></h4>
+        </div>
+      </div>
+
+      <!-- Formular checkout -->
+      <form id="checkout-form" class="checkout-form">
+        <!-- Date livrare -->
+        <div class="form-section">
+          <h3>Date de livrare</h3>
+          <div class="form-group">
+            <label for="delivery-name">Nume complet*</label>
+            <input type="text" id="delivery-name" name="deliveryName" required>
+          </div>
+          <div class="form-group">
+            <label for="delivery-phone">Telefon*</label>
+            <input type="tel" id="delivery-phone" name="deliveryPhone" required>
+          </div>
+          <div class="form-group">
+            <label for="delivery-address">Adresa completa*</label>
+            <textarea id="delivery-address" name="deliveryAddress" rows="3" required></textarea>
+          </div>
+        </div>
+
+        <!-- Metoda de plata -->
+        <div class="form-section">
+          <h3>Metoda de plata</h3>
+          <div class="payment-methods">
+            <label class="payment-method">
+              <input type="radio" name="paymentType" value="CARD" required>
+              <span>Plata cu cardul</span>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="paymentType" value="BANK_TRANSFER" required>
+              <span>Transfer bancar</span>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="paymentType" value="CASH_ON_DELIVERY" required>
+              <span>Ramburs (la livrare)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Date card (ascuns initial) -->
+        <div id="card-details" class="form-section" style="display: none;">
+          <h3>Date card</h3>
+          <div class="form-group">
+            <label for="card-number">Numar card (16 cifre)*</label>
+            <input type="text" id="card-number" name="cardNumber" maxlength="16" pattern="\d{16}">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cvv">CVV (3 cifre)*</label>
+              <input type="text" id="cvv" name="cvv" maxlength="3" pattern="\d{3}">
+            </div>
+            <div class="form-group">
+              <label for="expiry-month">Luna expirare*</label>
+              <select id="expiry-month" name="expiryMonth">
+                <option value="">Luna</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="expiry-year">Anul expirare*</label>
+              <select id="expiry-year" name="expiryYear">
+                <option value="">Anul</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informatii transfer bancar (ascuns initial) -->
+        <div id="bank-transfer-info" class="form-section" style="display: none;">
+          <h3>Informatii transfer bancar</h3>
+          <div class="bank-info">
+            <p><strong>IBAN destinatar:</strong> RO12DEMO1234567890123456</p>
+            <p><strong>Beneficiar:</strong> Denis Alibec SRL</p>
+            <p><strong>Banca:</strong> Demo Bank</p>
+            <p class="warning">⚠️ <strong>Important:</strong> Daca nu observam ca s-a facut viramentul in 3 zile lucratoare, comanda va fi anulata automat.</p>
+          </div>
+        </div>
+
+        <!-- Informatii ramburs (ascuns initial) -->
+        <div id="cash-delivery-info" class="form-section" style="display: none;">
+          <h3>Plata ramburs</h3>
+          <div class="cash-info">
+            <p>✅ Vei plati contravaloarea comenzii la livrare, in numerar.</p>
+            <p>📦 Produsele vor fi livrate in 2-5 zile lucratoare.</p>
+            <p>🚚 Costul livrarii este inclus in pret.</p>
+          </div>
+        </div>
+
+        <!-- Butoane -->
+        <div class="form-actions">
+          <a href="cos.html" class="btn-secondary">Inapoi la cos</a>
+          <button type="submit" class="btn-primary">Finalizeaza comanda</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>&copy; 2025 <a href="#">alibecdenis7.com</a>. Toate drepturile rezervate.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/alibecdenis/"><img src="images/social-media/Instagram.png" alt="Instagram" /></a>
+      <a href="#"><img src="images/social-media/tiktok.png" alt="TikTok" /></a>
+      <a href="https://www.facebook.com/denis.alibec.1"><img src="images/social-media/facebook.png" alt="Facebook" /></a>
+      <a href="#"><img src="images/social-media/youtube.png" alt="YouTube" /></a>
+      <a href="https://x.com/AlibecDenis"><img src="images/social-media/twitter1.png" alt="Twitter" /></a>
+    </div>
+  </footer>
+
+  <!-- Scripturi JS -->
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

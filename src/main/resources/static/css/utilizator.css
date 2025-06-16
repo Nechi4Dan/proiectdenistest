@@ -1,0 +1,21 @@
+/* css/utilizator.css */
+
+/* Stiluri pentru pagina utilizatorului */
+
+.utilizator-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.utilizator-container h2 {
+  margin-bottom: 1rem;
+}
+
+.utilizator-container .user-info p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}

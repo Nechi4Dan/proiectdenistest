@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plata Procesata - Denis Alibec</title>
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- CSS pentru success page -->
+  <link rel="stylesheet" href="css/payment-success.css" />
+</head>
+<body class="success-page">
+
+  <!-- ========== NAVBAR ========== -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Acasa</a>
+        <a href="despre.html">Despre</a>
+        <a href="magazin.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="utilizator.html">Profil</a>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== CONTINUT SUCCESS ========== -->
+  <main>
+    <section class="success-container">
+      <div class="success-icon">
+        <div class="checkmark">✓</div>
+      </div>
+      
+      <h1 id="success-title">Plata procesata cu succes!</h1>
+      <p id="success-message" class="success-description">
+        Comanda ta a fost inregistrata si va fi procesata in cel mai scurt timp.
+      </p>
+
+      <!-- Detalii plata -->
+      <div class="payment-details">
+        <h3>Detalii comanda</h3>
+        <div class="detail-row">
+          <span class="label">ID Tranzactie:</span>
+          <span id="transaction-id" class="value">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Metoda de plata:</span>
+          <span id="payment-method" class="value">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Total platit:</span>
+          <span id="total-amount" class="value">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Status:</span>
+          <span id="payment-status" class="value status">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Data:</span>
+          <span id="payment-date" class="value">-</span>
+        </div>
+      </div>
+
+      <!-- Informatii livrare -->
+      <div class="delivery-info">
+        <h3>Informatii livrare</h3>
+        <div class="delivery-details">
+          <p><strong>Destinatar:</strong> <span id="delivery-name">-</span></p>
+          <p><strong>Telefon:</strong> <span id="delivery-phone">-</span></p>
+          <p><strong>Adresa:</strong> <span id="delivery-address">-</span></p>
+        </div>
+      </div>
+
+      <!-- Instructiuni specifice metodei de plata -->
+      <div id="payment-instructions" class="payment-instructions">
+        <!-- Continut dinamic bazat pe metoda de plata -->
+      </div>
+
+      <!-- Actiuni -->
+      <div class="actions">
+        <a href="index.html" class="btn-primary">Inapoi la pagina principala</a>
+        <a href="magazin.html" class="btn-secondary">Continua cumparaturile</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>&copy; 2025 <a href="#">alibecdenis7.com</a>. Toate drepturile rezervate.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/alibecdenis/"><img src="images/social-media/Instagram.png" alt="Instagram" /></a>
+      <a href="#"><img src="images/social-media/tiktok.png" alt="TikTok" /></a>
+      <a href="https://www.facebook.com/denis.alibec.1"><img src="images/social-media/facebook.png" alt="Facebook" /></a>
+      <a href="#"><img src="images/social-media/youtube.png" alt="YouTube" /></a>
+      <a href="https://x.com/AlibecDenis"><img src="images/social-media/twitter1.png" alt="Twitter" /></a>
+    </div>
+  </footer>
+
+  <!-- Scripturi JS -->
+  <script src="js/main.js"></script>
+  <script src="js/payment-success.js"></script>
+</body>
+</html>

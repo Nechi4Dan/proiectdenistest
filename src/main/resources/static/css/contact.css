@@ -1,0 +1,54 @@
+/* ============================== */
+/* CSS specific pentru pagina CONTACT */
+/* ============================== */
+
+.contact {
+  max-width: 600px;
+  margin: 60px auto 120px;
+  padding: 20px;
+}
+
+.contact h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.contact p {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.formular-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formular-contact input,
+.formular-contact textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.formular-contact textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.formular-contact button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.formular-contact button:hover {
+  background-color: #555;
+}

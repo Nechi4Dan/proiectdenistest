@@ -104,6 +104,10 @@ public class UserService {
         return user;
     }
 
+    public Optional<UserDTO> getUserByUsername(String username) {
+        return userRepository.findByUsername(username).map(this::convertToDTO);
+    }
+
     // ================== TODO ==================
 
     // TODO: de adaugat functii pentru editare profil, stergere cont, schimbare parola etc.

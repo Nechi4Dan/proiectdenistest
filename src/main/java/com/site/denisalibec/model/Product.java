@@ -32,6 +32,7 @@ public class Product {
     @NotBlank(message = "Categoria este obligatorie")
     private String category;
 
+    // TODO: momentan nefolosit in front - tine variante de stoc ( ex marimi)
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductStock> stockVariants = new ArrayList<>();
 
@@ -48,7 +49,8 @@ public class Product {
         this.category = category;
     }
 
-    public Product(Long id, String name, String description, double price, int stock, String category, List<ProductStock> stockVariants) {
+    // TODO: Acest constructor include stockVariants si imagine dar nu e folosit acum.
+    public Product(Long id, String name, String description, double price, int stock, String category, List<ProductStock> stockVariants, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -78,6 +80,7 @@ public class Product {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
+    // TODO: Acest camp nu este inca folosit in front/back. se va folosi pentru variante de stoc (ex marimi)
     public List<ProductStock> getStockVariants() { return stockVariants; }
     public void setStockVariants(List<ProductStock> stockVariants) { this.stockVariants = stockVariants; }
 

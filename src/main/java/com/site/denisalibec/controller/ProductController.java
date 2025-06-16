@@ -1,33 +1,38 @@
 package com.site.denisalibec.controller;
 
-import com.site.denisalibec.model.Product;
-import com.site.denisalibec.repository.ProductRepository;
+import com.site.denisalibec.dto.ProductDTO;
+import com.site.denisalibec.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin(origins = "*")
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    // GET /api/products
+    // GET /api/products → toate produsele (ca DTO)
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return productService.getAllProducts();
     }
 
-    // GET /api/products/{id}
+    // GET /api/products/{id} → produs după ID (ca DTO)
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return productRepository.findById(id)
+    public ProductDTO getProductById(@PathVariable Long id) {
+        return productService.getProductById(id)
                 .orElseThrow(() -> new RuntimeException("Produsul nu a fost gasit"));
     }
+
+    // TODO: Adaugare metode POST, PUT si DELETE pentru administrarea produselor:
+    // - @PostMapping pentru a adauga produse noi
+    // - @PutMapping pentru a edita produse existente
+    // - DeleteMapping pentru a sterge produse
+
 }
